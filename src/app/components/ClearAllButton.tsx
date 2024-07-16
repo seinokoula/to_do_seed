@@ -11,7 +11,7 @@ const ClearAllButton: React.FC = () => {
   return (
     <motion.button
       onClick={clearTasks}
-      className="mt-4 p-2 bg-red-500 text-white rounded w-full"
+      className="mt-4 p-2 bg-[#BF3131] text-white rounded w-full"
       // whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.95 }}
     >

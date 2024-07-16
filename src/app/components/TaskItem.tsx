@@ -16,23 +16,32 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, toggleTaskCompletion, deleteT
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             layout
+            whileTap={{ scale: 0.95 }}
+            style={{ backgroundColor: task.completed ? '#313e39' : 'transparent' }}
+            transition={{ duration: 0.3 }}
         >
-            <p className={`flex-grow text-white ${task.completed ? 'line-through' : ''}`}>
-                {task.text}
-            </p>
+            <motion.p
+                className={`flex-grow text-white ${task.completed ? 'line-through' : ''}`}
+                animate={{ backgroundColor: task.completed ? '#313e39' : 'transparent' }}
+                transition={{ duration: 0.3 }}
+            >
+                {task.text} <span className="text-sm text-gray-400">({task.priority})</span>
+            </motion.p>
             <div className="flex items-center">
-                <button
+                <motion.button
                     onClick={() => toggleTaskCompletion(task.id)}
                     className="ml-2 p-2 border-2 border-gray-200 text-white rounded"
+                    whileHover={{ scale: 1.1 }}
                 >
                     {task.completed ? <CheckCircle /> : <Circle />}
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                     onClick={() => deleteTask(task.id)}
-                    className="ml-2 p-2 border-2 border-red-500 text-white rounded"
+                    className="ml-2 p-2 border-2 border-[#BF3131] text-white rounded"
+                    whileHover={{ scale: 1.1 }}
                 >
                     <Trash />
-                </button>
+                </motion.button>
             </div>
         </motion.div>
     );
