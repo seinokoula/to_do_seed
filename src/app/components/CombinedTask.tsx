@@ -6,8 +6,8 @@ import TaskItem from './TaskItem';
 import { Task } from '../types/task';
 import { filterTasks } from '../utils/filterTasks';
 
-const TaskList: React.FC = () => {
-    const { tasks, toggleTaskCompletion } = useTasks();
+const CombinedTaskComponent: React.FC = () => {
+    const { tasks, addTask, toggleTaskCompletion } = useTasks();
     const [query, setQuery] = useState('');
     const [filteredTasks, setFilteredTasks] = useState<Task[]>(tasks);
     const [isStrictMode, setIsStrictMode] = useState(false);
@@ -20,8 +20,16 @@ const TaskList: React.FC = () => {
         }
     }, [tasks, query, isStrictMode]);
 
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchOrAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (query.trim() && !tasks.some(task => task.text === query)) {
+            addTask({ id: Date.now().toString(), text: query, completed: false });
+            setQuery('');
+        }
     };
 
     const toggleSearchMode = () => {
@@ -31,13 +39,15 @@ const TaskList: React.FC = () => {
     return (
         <>
             <div className="flex items-center mb-4">
-                <input
-                    type="text"
-                    value={query}
-                    onChange={handleSearch}
-                    placeholder="Search a task..."
-                    className="flex-grow p-2 border rounded"
-                />
+                <form onSubmit={handleSubmit} className="flex-grow">
+                    <input
+                        type="text"
+                        value={query}
+                        onChange={handleSearchOrAdd}
+                        placeholder="Search or add a task..."
+                        className="flex-grow p-2 border rounded w-full"
+                    />
+                </form>
                 <button
                     onClick={toggleSearchMode}
                     className={`ml-2 p-2 rounded ${isStrictMode ? 'bg-green-500 text-white' : 'bg-gray-500 text-white'}`}
@@ -54,4 +64,4 @@ const TaskList: React.FC = () => {
     );
 };
 
-export default TaskList;
+export default CombinedTaskComponent;

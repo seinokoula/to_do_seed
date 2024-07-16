@@ -32,10 +32,12 @@ const taskReducer = (state: Task[], action: any) => {
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
     const [storedTasks, setStoredTasks] = useLocalStorage<Task[]>('tasks', []);
-    const [tasks, dispatch] = useReducer(taskReducer, storedTasks);
+    const [tasks, dispatch] = useReducer(taskReducer, []);
 
     useEffect(() => {
-        dispatch({ type: 'INIT', payload: storedTasks });
+        if (storedTasks.length) {
+            dispatch({ type: 'INIT', payload: storedTasks });
+        }
     }, [storedTasks]);
 
     useEffect(() => {
