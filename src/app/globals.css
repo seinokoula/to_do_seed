@@ -2,32 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: 'Technor-Extralight';
+  src: url('../../fonts/Technor-Extralight.woff2') format('woff2'),
+    url('../../fonts/Technor-Extralight.woff') format('woff'),
+    url('../../fonts/Technor-Extralight.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: 'Technor-Light';
+  src: url('../../fonts/Technor-Light.woff2') format('woff2'),
+    url('../../fonts/Technor-Light.woff') format('woff'),
+    url('../../fonts/Technor-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@font-face {
+  font-family: 'Technor-Regular';
+  src: url('../../fonts/Technor-Regular.woff2') format('woff2'),
+    url('../../fonts/Technor-Regular.woff') format('woff'),
+    url('../../fonts/Technor-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} */
+@font-face {
+  font-family: 'Technor-Medium';
+  src: url('../../fonts/Technor-Medium.woff2') format('woff2'),
+    url('../../fonts/Technor-Medium.woff') format('woff'),
+    url('../../fonts/Technor-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Technor-Semibold';
+  src: url('../../fonts/Technor-Semibold.woff2') format('woff2'),
+    url('../../fonts/Technor-Semibold.woff') format('woff'),
+    url('../../fonts/Technor-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Technor-Bold';
+  src: url('../../fonts/Technor-Bold.woff2') format('woff2'),
+    url('../../fonts/Technor-Bold.woff') format('woff'),
+    url('../../fonts/Technor-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Technor-Black';
+  src: url('../../fonts/Technor-Black.woff2') format('woff2'),
+    url('../../fonts/Technor-Black.woff') format('woff'),
+    url('../../fonts/Technor-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Technor-Variable';
+  src: url('../../fonts/Technor-Variable.woff2') format('woff2'),
+    url('../../fonts/Technor-Variable.woff') format('woff'),
+    url('../../fonts/Technor-Variable.ttf') format('truetype');
+  font-weight: 200 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+h1 {
+  font-family: 'Technor-bold', sans-serif;
+}
+
+p {
+  font-family: 'Technor-regular', sans-serif;
+}
+
+input {
+  font-family: 'Technor-regular', sans-serif;
+}

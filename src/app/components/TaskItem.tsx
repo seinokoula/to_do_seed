@@ -1,4 +1,6 @@
 import { Task } from '../types/task';
+import { motion } from 'framer-motion';
+import { Trash, CheckCircle, Circle } from 'iconoir-react';
 
 interface TaskItemProps {
     task: Task;
@@ -8,25 +10,31 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, toggleTaskCompletion, deleteTask }) => {
     return (
-        <div className="flex items-center justify-between p-2 border-b">
-            <span className={`flex-grow ${task.completed ? 'line-through' : ''}`}>
+        <motion.div
+            className="flex items-center justify-between p-2 border-b-2 border-b-[#D6BD98]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            layout
+        >
+            <p className={`flex-grow text-white ${task.completed ? 'line-through' : ''}`}>
                 {task.text}
-            </span>
+            </p>
             <div className="flex items-center">
                 <button
                     onClick={() => toggleTaskCompletion(task.id)}
-                    className="ml-2 p-2 bg-gray-200 rounded"
+                    className="ml-2 p-2 border-2 border-gray-200 text-white rounded"
                 >
-                    {task.completed ? '✓' : '⏷'}
+                    {task.completed ? <CheckCircle /> : <Circle />}
                 </button>
                 <button
                     onClick={() => deleteTask(task.id)}
-                    className="ml-2 p-2 bg-red-500 text-white rounded"
+                    className="ml-2 p-2 border-2 border-red-500 text-white rounded"
                 >
-                    🗑️
+                    <Trash />
                 </button>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
