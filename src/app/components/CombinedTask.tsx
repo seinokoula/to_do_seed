@@ -7,7 +7,7 @@ import { Task } from '../types/task';
 import { filterTasks } from '../utils/filterTasks';
 
 const CombinedTaskComponent: React.FC = () => {
-    const { tasks, addTask, toggleTaskCompletion } = useTasks();
+    const { tasks, addTask, toggleTaskCompletion, deleteTask } = useTasks();
     const [query, setQuery] = useState('');
     const [filteredTasks, setFilteredTasks] = useState<Task[]>(tasks);
     const [isStrictMode, setIsStrictMode] = useState(false);
@@ -45,7 +45,7 @@ const CombinedTaskComponent: React.FC = () => {
                         value={query}
                         onChange={handleSearchOrAdd}
                         placeholder="Search or add a task..."
-                        className="flex-grow p-2 border rounded w-full"
+                        className="flex-grow p-2 border rounded"
                     />
                 </form>
                 <button
@@ -57,7 +57,7 @@ const CombinedTaskComponent: React.FC = () => {
             </div>
             <div className="mt-4">
                 {filteredTasks.map((task: Task) => (
-                    <TaskItem key={task.id} task={task} toggleTaskCompletion={toggleTaskCompletion} />
+                    <TaskItem key={task.id} task={task} toggleTaskCompletion={toggleTaskCompletion} deleteTask={deleteTask} />
                 ))}
             </div>
         </>

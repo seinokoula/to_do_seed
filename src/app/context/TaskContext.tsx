@@ -8,6 +8,7 @@ interface TaskContextProps {
     tasks: Task[];
     addTask: (task: Task) => void;
     toggleTaskCompletion: (id: string) => void;
+    deleteTask: (id: string) => void;
     clearTasks: () => void;
 }
 
@@ -21,6 +22,8 @@ const taskReducer = (state: Task[], action: any) => {
             return state.map(task =>
                 task.id === action.payload ? { ...task, completed: !task.completed } : task
             );
+        case 'DELETE_TASK':
+            return state.filter(task => task.id !== action.payload);
         case 'CLEAR_TASKS':
             return [];
         case 'INIT':
@@ -46,10 +49,11 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
 
     const addTask = (task: Task) => dispatch({ type: 'ADD_TASK', payload: task });
     const toggleTaskCompletion = (id: string) => dispatch({ type: 'TOGGLE_TASK', payload: id });
+    const deleteTask = (id: string) => dispatch({ type: 'DELETE_TASK', payload: id });
     const clearTasks = () => dispatch({ type: 'CLEAR_TASKS' });
 
     return (
-        <TaskContext.Provider value={{ tasks, addTask, toggleTaskCompletion, clearTasks }}>
+        <TaskContext.Provider value={{ tasks, addTask, toggleTaskCompletion, deleteTask, clearTasks }}>
             {children}
         </TaskContext.Provider>
     );
