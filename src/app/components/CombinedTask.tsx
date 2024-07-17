@@ -15,6 +15,7 @@ const CombinedTaskComponent: React.FC = () => {
     const [priorityFilter, setPriorityFilter] = useState<'All' | 'None' | 'Low' | 'Medium' | 'High'>('All');
     const [filteredTasks, setFilteredTasks] = useState<Task[]>(tasks);
     const [isStrictMode, setIsStrictMode] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(false);
 
     useEffect(() => {
         setFilteredTasks(filterTasks(tasks, query, priorityFilter, isStrictMode));
@@ -87,14 +88,33 @@ const CombinedTaskComponent: React.FC = () => {
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
                     </select>
-                    <button
-                        onClick={toggleSearchMode}
-                        className={`ml-2 p-2 rounded ${isStrictMode ? 'border-2 border-[#c0cfc8] text-white' : 'border-2 border-gray-500 text-white'}`}
-                    >
-                        {isStrictMode ? <EyeSolid /> : <Eye />}
-                    </button>
+                    <div className="relative ml-2 flex items-center">
+                        <button
+                            onClick={toggleSearchMode}
+                            onMouseEnter={() => setShowTooltip(true)}
+                            onMouseLeave={() => setShowTooltip(false)}
+                            className={`p-2 rounded ${isStrictMode ? 'border-2 bg-[#313e39] border-[#c0cfc8] text-white' : 'border-2 border-gray-500 text-white'}`}
+                        >
+                            {isStrictMode ? <EyeSolid /> : <Eye />}
+                        </button>
+                        {showTooltip && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="absolute left-full ml-2 p-2 bg-gray-700 text-white text-sm rounded shadow-lg"
+                                style={{ whiteSpace: 'nowrap' }}
+                            >
+                                <div className="relative">
+                                    <div className="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-gray-700"></div>
+                                    Toggle strict mode: Only show tasks that start with the search query.
+                                </div>
+                            </motion.div>
+                        )}
+                    </div>
                 </div>
             </div>
+            <h2 className="text-xl text-[#D6BD98]">Tasks</h2>
             <motion.div layout className="mt-4">
                 <AnimatePresence>
                     {filteredTasks.map((task: Task) => (
