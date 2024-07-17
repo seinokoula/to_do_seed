@@ -61,7 +61,7 @@ const CombinedTaskComponent: React.FC = () => {
                         <select
                             value={priority}
                             onChange={handlePrioritySelect}
-                            className="px-2 py-[0.58rem] border-2 border-l-0 border-[#D6BD98] rounded-r-full bg-[#40534C] text-white"
+                            className="px-2 py-[0.58rem] border-2 border-l-0 border-[#D6BD98] rounded-r-full bg-[#40534C] text-white focus:outline-none"
                         >
                             <option value="None">None</option>
                             <option value="Low">Low</option>
@@ -80,7 +80,7 @@ const CombinedTaskComponent: React.FC = () => {
                     <select
                         value={priorityFilter}
                         onChange={handlePriorityChange}
-                        className="p-2 border-2 border-gray-500 rounded"
+                        className="h-10 p-2 border-2 border-gray-500 rounded bg-[#40534C] text-white focus:outline-none focus:ring-[#D6BD98]"
                     >
                         <option value="All">All</option>
                         <option value="None">None</option>
@@ -93,7 +93,7 @@ const CombinedTaskComponent: React.FC = () => {
                             onClick={toggleSearchMode}
                             onMouseEnter={() => setShowTooltip(true)}
                             onMouseLeave={() => setShowTooltip(false)}
-                            className={`p-2 rounded ${isStrictMode ? 'border-2 bg-[#313e39] border-[#c0cfc8] text-white' : 'border-2 border-gray-500 text-white'}`}
+                            className={`h-10 w-10 flex items-center justify-center rounded ${isStrictMode ? 'border-2 bg-[#313e39] border-[#c0cfc8] text-white' : 'border-2 border-gray-500 text-white'}`}
                         >
                             {isStrictMode ? <EyeSolid /> : <Eye />}
                         </button>

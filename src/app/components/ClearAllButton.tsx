@@ -16,7 +16,7 @@ const ClearAllButton: React.FC = () => {
       whileTap={{ scale: 0.95 }}
     >
       <Trash className="inline-block mr-2" />
-      Tout supprimer
+        Clear All
     </motion.button>
   );
 };
