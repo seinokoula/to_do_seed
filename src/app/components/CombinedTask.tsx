@@ -56,7 +56,7 @@ const CombinedTaskComponent: React.FC = () => {
                             value={query}
                             onChange={handleSearchOrAdd}
                             placeholder="Search or add a task"
-                            className="flex-grow p-2 border-2 bg-[#40534C] text-white border-[#D6BD98] rounded-l-full"
+                            className="flex-grow p-2 border-2 focus:outline-none bg-[#40534C] text-white border-[#D6BD98] rounded-l-full"
                         />
                         <select
                             value={priority}
